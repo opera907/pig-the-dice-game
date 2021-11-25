@@ -5,7 +5,7 @@ const players = document.querySelectorAll('.total-player')
 const diceVal = document.querySelector('.dice-val')
 
 btnDice.addEventListener('click', rollTheDice)
-
+btnStop.addEventListener('click', changeTurn)
     
 let p1 = 0;
 let p2 = 0;
@@ -21,6 +21,16 @@ function rollTheDice() {
         if(ele.classList.contains('playing') && ele.classList.contains('player2')){
             p2 = p2 + randomNum
             ele.textContent = p2 
+        }
+    })
+}
+
+function changeTurn(){
+    players.forEach(ele => {
+        if(!ele.classList.contains('playing')) {
+            ele.classList.add('playing')
+        } else {
+            ele.classList.remove('playing')
         }
     })
 }
