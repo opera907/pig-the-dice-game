@@ -6,7 +6,7 @@ const diceVal = document.querySelector('.dice-val')
 
 btnDice.addEventListener('click', rollTheDice)
 
-
+    
 let p1 = 0;
 let p2 = 0;
 
