@@ -12,14 +12,16 @@ let p2 = 0;
 
 function rollTheDice() {
     const randomNum = Math.floor((Math.random() * 6) + 1)
+
     diceVal.textContent = randomNum
+
     players.forEach(ele => {
         if(ele.classList.contains('playing') && ele.classList.contains('player1')){
-            p1 = p1 + randomNum
+            randomNum === 1 ? p1 = 0 : p1 +=randomNum
             ele.textContent = p1 
         }
         if(ele.classList.contains('playing') && ele.classList.contains('player2')){
-            p2 = p2 + randomNum
+            randomNum === 1 ? p2 = 0 : p2 +=randomNum
             ele.textContent = p2 
         }
     })
