@@ -9,48 +9,39 @@ btnStop.addEventListener('click', changeTurn)
 
 
 let score = [0, 0]
+let activePlayer = 0
 
 function rollTheDice() {
-    let randomNum = Math.floor((Math.random() * 6) + 1)
-    randomNum === 1 ? diceVal.style.color = "red" : diceVal.style.color = "black"
-    diceVal.textContent = randomNum
+	let randomNum = Math.floor((Math.random() * 6) + 1)
+	randomNum === 1 ? diceVal.style.color = "red" : diceVal.style.color = "black"
+	diceVal.textContent = randomNum
 
 
-    players.forEach((ele, i) => {
-        if (ele.classList.contains('playing')) {
-            if (randomNum === 1) {
-                score[i] = 0
-            } else {
-                score[i] += randomNum
-            }
-            //randomNum === 1 ? score[i] = 0 : score[i] += randomNum
-            if (score[i] > 20) {
-                reset()
-                alert(`player${i + 1} win!`)
-            }
-            ele.textContent = score[i]
-        }
-    })
-    console.log(score)
+	if (randomNum === 1) {
+		score[activePlayer] = 0
+		players[activePlayer].textContent = score[activePlayer]
+		changeTurn()
+	} else {
+		score[activePlayer] += randomNum
+		players[activePlayer].textContent = score[activePlayer]
+	}
 
+	if (score[activePlayer] >= 50) {
+		alert(`player${activePlayer + 1} win!!!`)
+		reset()
+	}
 }
 
 function changeTurn() {
-    players.forEach(ele => {
-        if (!ele.classList.contains('playing')) {
-            ele.classList.add('playing')
-        } else {
-            ele.classList.remove('playing')
-        }
-    })
+	activePlayer = activePlayer === 0 ? 1 : 0;
+	//activePlayer === 0 ? activePlayer = 1 : activePlayer = 0
 }
 
 function reset() {
-    score = [0, 0]
-    randomNum = 0
-    players.forEach(ele => {
-        ele.textContent = 0
-    })
-    diceVal.textContent = randomNum
-    changeTurn()
+	score = [0, 0]
+	activePlayer = 0
+	randomNum = 0
+
+	players.forEach(ele => ele.textContent = 0)
+	diceVal.textContent = randomNum
 }

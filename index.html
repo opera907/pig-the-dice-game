@@ -1,25 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pig the dice</title>
-    <script src="./main.js" defer></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pig the dice</title>
+  <script src="./main.js" defer></script>
+  <style>
+    body {
+      font-size: 2em;
+    }
+
+    button {
+      font-size: 1em;
+    }
+  </style>
 </head>
+
 <body>
-    <h1>Let's do the pig game</h1>
-   <div class="palyer-area">
-        <div>palyer1: <span class="total-player player1 playing">0</span></div>
-        <div>player2: <span class="total-player player2">0</span></div>
-   </div>
-   <div class="dice-val-area">
-       <h3>now dice val is <span class="dice-val">0</span></h3>
-   </div>
-    <div class="btn-area">
-        <button class="btn-dice">roll the dice</button>
-        <button class="btn-stop">stop</button>
-    </div >
+  <h1>Let's do the pig game</h1>
+  <div class="dice-val-area">
+    <h3>now dice val : <span class="dice-val">0</span></h3>
+  </div>
+  <div class="player-area">
+    <p>palyer1: <span class="total-player player1 playing">0</span></p>
+    <p>player2: <span class="total-player player2">0</span></p>
+  </div>
+
+  <div class="btn-area">
+    <button class="btn-dice">roll the dice</button>
+    <button class="btn-stop">stop</button>
+  </div>
 
 </body>
+
 </html>
