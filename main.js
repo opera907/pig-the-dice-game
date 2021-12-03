@@ -6,33 +6,51 @@ const diceVal = document.querySelector('.dice-val')
 
 btnDice.addEventListener('click', rollTheDice)
 btnStop.addEventListener('click', changeTurn)
-    
-let p1 = 0;
-let p2 = 0;
+
+
+let score = [0, 0]
 
 function rollTheDice() {
-    const randomNum = Math.floor((Math.random() * 6) + 1)
-
+    let randomNum = Math.floor((Math.random() * 6) + 1)
+    randomNum === 1 ? diceVal.style.color = "red" : diceVal.style.color = "black"
     diceVal.textContent = randomNum
 
-    players.forEach(ele => {
-        if(ele.classList.contains('playing') && ele.classList.contains('player1')){
-            randomNum === 1 ? p1 = 0 : p1 +=randomNum
-            ele.textContent = p1 
-        }
-        if(ele.classList.contains('playing') && ele.classList.contains('player2')){
-            randomNum === 1 ? p2 = 0 : p2 +=randomNum
-            ele.textContent = p2 
+
+    players.forEach((ele, i) => {
+        if (ele.classList.contains('playing')) {
+            if (randomNum === 1) {
+                score[i] = 0
+            } else {
+                score[i] += randomNum
+            }
+            //randomNum === 1 ? score[i] = 0 : score[i] += randomNum
+            if (score[i] > 20) {
+                reset()
+                alert(`player${i + 1} win!`)
+            }
+            ele.textContent = score[i]
         }
     })
+    console.log(score)
+
 }
 
-function changeTurn(){
+function changeTurn() {
     players.forEach(ele => {
-        if(!ele.classList.contains('playing')) {
+        if (!ele.classList.contains('playing')) {
             ele.classList.add('playing')
         } else {
             ele.classList.remove('playing')
         }
     })
+}
+
+function reset() {
+    score = [0, 0]
+    randomNum = 0
+    players.forEach(ele => {
+        ele.textContent = 0
+    })
+    diceVal.textContent = randomNum
+    changeTurn()
 }
